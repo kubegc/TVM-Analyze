@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import json
 import os
 import ast
+import analyzes.config as config
 
 def calc_datas_count(dimens: tuple, shapes: tuple, batch_size: int):
     shape = list(shapes[dimens[1][0]])

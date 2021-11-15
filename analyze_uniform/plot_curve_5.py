@@ -7,6 +7,7 @@ import matplotlib as mpl
 import json
 import os
 import math
+import analyzes.config as config
 
 # 自定义函数，curve_fit支持自定义函数的形式进行拟合，这里定义的是指数函数的形式
 def func(x, k1,k2,k3,k4,k5,b0):
@@ -37,7 +38,7 @@ plt.rcParams['font.sans-serif'] = ['FangSong']  # 指定默认字体
 plt.rcParams['axes.unicode_minus'] = False      # 解决保存图像时'-'显示为方块的问题
 
 program_path = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(program_path,"../create_dataset/datasets/dataset.json") 
+json_path = os.path.join(config.dataset_path,"datasets/dataset.json") 
 datas = {}
 picture_index = 1
 

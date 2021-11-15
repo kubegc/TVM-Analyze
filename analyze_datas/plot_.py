@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import json
 import os
 import ast
+import analyzes.config as config
 
 def mycolor(index)->str:
     colors_ = ['red','green','blue','c','m','y','k']
@@ -27,7 +28,7 @@ plt.rcParams['font.sans-serif'] = ['FangSong']  # 指定默认字体
 plt.rcParams['axes.unicode_minus'] = False      # 解决保存图像时'-'显示为方块的问题
 
 program_path = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(program_path,"../create_dataset/datasets/dataset.json") 
+json_path = os.path.join(config.dataset_path,"datasets/dataset.json") 
 datas = {}
 picture_index = 1
 
