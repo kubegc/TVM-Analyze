@@ -21,7 +21,7 @@ plt.rcParams['font.sans-serif'] = ['FangSong']  # 指定默认字体
 plt.rcParams['axes.unicode_minus'] = False      # 解决保存图像时'-'显示为方块的问题
 
 program_path = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(config.dataset_path,"datasets/dataset.json") 
+json_path = os.path.join(config.dataset_path,"datasets_channel/dataset.json") 
 datas = {}
 picture_index = 1
 
@@ -69,9 +69,12 @@ for device_name in datas.keys():
                     value = datas[device_name][op_name][device_id][shapes_dimensionality][shape]
                     with open(os.path.join(config.prefix_dataset_fold_path, value["file_path"])) as f:
                         line = f.readline()
-                        while line is not None and len(line)>0 :
-                            datas_runtime[0].append(calc_datas_count(ast.literal_eval(shapes_dimensionality),ast.literal_eval(shape)))
-                            datas_runtime[1].append(int(line.split(",")[0]))
+                        while line is not None and len(line)>0:
+                            sd_shape = ast.literal_eval(shape)[0]
+
+                            # datas_runtime[0].append(calc_datas_count(ast.literal_eval(shapes_dimensionality),ast.literal_eval(shape)))
+                            datas_runtime[0].append(sd_shape[2]*sd_shape[3])
+                            datas_runtime[1].append(int(line.split(",")[0])*sd_shape[1])
                             datas_runtime[2].append(float(line.split(",")[1]))
                             line=f.readline()
 
@@ -88,5 +91,5 @@ for device_name in datas.keys():
             ax.set_xlabel('data size')
             ax.set_ylabel('batch size')
             ax.set_zlabel('run-time')
-            plt.savefig(os.path.join(fold_path,hardware_name+"-3D.png"))
+            plt.savefig(os.path.join(fold_path,hardware_name+"-3D_2v2.png"))
             plt.close()

@@ -27,7 +27,7 @@ picture_index = 1
 with open(json_path,'r') as f:
     datas = json.load(f)
 
-device = {"dell04":{"0":"GTX-2080Ti"},"dell03":{"0":"Tesla-T4"},"dell01":{"0":"Tesla-T4"},"dellh01":{"0":"Tesla-K40c"}}
+device = config.devices
 
 for device_name in datas.keys():
     if device_name=="count":
